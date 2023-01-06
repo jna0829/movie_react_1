@@ -1,0 +1,25 @@
+
+/* 초기값 (기본속성 없애기) */
+button {
+    background: none;
+    color: inherit;
+    border: none;
+    cursor: pointer;
+    outline: inherit;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+input:focus {
+    outline: none;
+}
+
+/* 여기부터 main페이지 css작업 */
+

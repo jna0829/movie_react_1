@@ -1,0 +1,78 @@
+/* 초기값 (기본속성 없애기) */
+button {
+    background: none;
+    color: inherit;
+    border: none;
+    cursor: pointer;
+    outline: inherit;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+input:focus {
+    outline: none;
+}
+
+/* 여기부터 Theater페이지 css작업 */
+
+.container{
+    position: relative;
+    font-size: 15px;
+    color: #000;
+    font-weight: 400;
+}
+
+h1.title {
+    padding: 25px 0 25px 0;
+    font-size: 35px;
+}
+
+.btn-group {
+    overflow: hidden;
+}
+
+.btn-group > button {
+    float: left;
+    width: 210px;
+    height: 48px;
+    line-height: 48px;
+    border: 1px solid #b2b2b2;
+    border-width: 0 1px 1px 0;
+    text-align: center;
+    box-sizing: border-box;
+    /* justify-content: space-between; */
+}
+
+.theater-box {
+    position: relative;
+    display: block;
+    width: 1055px;
+    min-height: 150px;
+    border: 3px solid #686571;
+    border-radius: 10px;
+}
+
+.theater-box .tabContent {
+    padding: 15px 10px;
+}
+
+.menu-active {
+    background: rgb(179, 178, 178);
+}
+
+h2.title {
+    padding: 40px 0 20px 0;
+    font-size: 30px;
+}
+
+h3.theaterTit {
+    padding: 10px 0 10px 0;
+    font-size: 30px;
+}

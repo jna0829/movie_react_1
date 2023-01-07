@@ -10,7 +10,7 @@ const Theater = () => {
 
     const [locationId, setLocationID] = useState('Seoul');
     const [itemList, setItemList] = useState([]);
-    const [theaterID, setTheaterID] = useState([]);
+    const [theaterID, setTheaterID] = useState('1-1');
     const [theater, setTheater] = useState([]);
     const [currentMenu, setCurrentMenu] = useState({});
 
@@ -37,7 +37,6 @@ const Theater = () => {
         console.log('클릭 작동 elem: ',elem);
         setTheaterID(elem.dataset.id);
         // console.log('theaterID: ', theaterID);
-        
     }
 
     function clickInfoHandler(e) {
@@ -47,7 +46,7 @@ const Theater = () => {
         .then(res => res.json())
         .then(json => {
             console.log(json);
-            setTheater(json.theaters);
+            setTheater(json);
         })
 
     }

@@ -15,7 +15,7 @@ const AppRouter = () => {
             <Routes>
                 {/* 뜻 : "/" 경로로 요청하면 App컴포넌트를 렌더링하세요 */}
                 <Route path="/" element={<App />} />
-                <Route path="/theaters" element={<Theater />} />
+                <Route path="/theaters/*" element={<Theater />} />
                 {/* <Route path="/theaters/:theaterID" element={<Theater />} /> */}
             </Routes>
         </>

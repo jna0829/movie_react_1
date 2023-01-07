@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, Route, Routes, useParams } from "react-router-dom";
 import '../css/Theater.css';
 import TheaterInfo from "./TheaterInfo";
 
@@ -10,7 +10,7 @@ const Theater = () => {
 
     const [locationId, setLocationID] = useState('Seoul');
     const [itemList, setItemList] = useState([]);
-    const [theaterID, setTheaterID] = useState('1-1');
+    const [theaterID, setTheaterID] = useState([]);
     const [theater, setTheater] = useState([]);
     const [currentMenu, setCurrentMenu] = useState({});
 
@@ -33,7 +33,28 @@ const Theater = () => {
         activate(e.target);
     };
 
+    function click(elem) {
+        console.log('클릭 작동 elem: ',elem);
+        setTheaterID(elem.dataset.id);
+        // console.log('theaterID: ', theaterID);
+        
+    }
+
+    function clickInfoHandler(e) {
+        click(e.target);
+
+        fetch(`${BASE_URL}/${locationId}/${theaterID}`)
+        .then(res => res.json())
+        .then(json => {
+            console.log(json);
+            setTheater(json.theaters);
+        })
+
+    }
+
     useEffect(() => {
+
+        console.log('지점 정보 불러옴!~');
         // 지점 정보 불러오기
         fetch(`${BASE_URL}/${locationId}`)
         .then(res => res.json())
@@ -44,15 +65,6 @@ const Theater = () => {
         );
     }, [locationId]);
 
-    useEffect(() => {
-        fetch(`${BASE_URL}/${locationId}/${theaterID}`)
-        .then(res => {
-            return res.json()
-        })
-        .then(data => {
-            setTheater(data);
-        })
-    }, [theaterID]);
 
 
     return(
@@ -76,7 +88,7 @@ const Theater = () => {
                         {itemList.map(item => {
                                 return (
                                     <li key={item.theaterID} >
-                                        <Link to={`${item.theaterID}`}>{item.theaterNm}점</Link>
+                                        <Link to={`/theaters/${item.theaterID}`} data-id={item.theaterID} onClick={clickInfoHandler}>{item.theaterNm}점</Link>
                                     </li>
                                 );
                             })
@@ -87,8 +99,8 @@ const Theater = () => {
 
             {/* 지점 상세정보 */}
             <h2 className="title">지점 상세정보</h2>
-            <h3 className="theaterTit">{theater.theaterNm}점</h3>
-                <TheaterInfo theater={theater} key={theater.id} />
+            <TheaterInfo theater={theater} />
+            
         </div>
         </>
     );

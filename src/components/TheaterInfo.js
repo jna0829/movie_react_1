@@ -3,7 +3,10 @@ import '../css/TheaterInfo.css';
 
 const TheaterInfo = ({theater}) => {
 
+
     return(
+        <>
+        <h3 className="theaterTit">{theater.theaterNm}점</h3>
         <div className="theaterTab">
             <div className="box-img">
                 <img className="theaterImg" src={theaterImg} />
@@ -15,7 +18,7 @@ const TheaterInfo = ({theater}) => {
                 </div>
             </div>
         </div>
-
+        </>
     );
 };
 

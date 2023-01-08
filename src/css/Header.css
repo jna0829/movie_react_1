@@ -1,0 +1,56 @@
+/* 초기값 (기본속성 없애기) */
+button {
+    background: none;
+    color: inherit;
+    border: none;
+    cursor: pointer;
+    outline: inherit;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+ul {
+    list-style:none;
+}
+
+li {
+    float: left;
+    padding-left: 20px;
+}
+
+input:focus {
+    outline: none;
+}
+
+/* 여기부터 css작업 */
+
+header {
+    display: flex;
+    position: relative;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    background-color: rgb(201, 134, 134);
+}
+
+header .header_content {
+    display: flex;
+    
+}
+
+header .header_content .logo {
+    background-color: rgb(50, 151, 59);
+}
+
+
+header .header_content .nav {
+    left: 0;
+    top: 600px;
+    width: 100%;
+    padding: 20px 0;
+    background-color: rgb(113, 91, 173);
+}
+
+

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Link, Route, Routes, useParams } from "react-router-dom";
+import React, { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import '../css/Theater.css';
 import TheaterInfo from "./TheaterInfo";
 
@@ -13,6 +13,8 @@ const Theater = () => {
     const [theaterID, setTheaterID] = useState('1-1');
     const [theater, setTheater] = useState([]);
     const [currentMenu, setCurrentMenu] = useState({});
+
+    const $ulRef = useRef();
 
     // 메뉴 지역 클릭 활성화 기능
     function activate(elem) {
@@ -34,14 +36,6 @@ const Theater = () => {
     };
 
     function click(elem) {
-        console.log('클릭 작동 elem: ',elem);
-        setTheaterID(elem.dataset.id);
-        // console.log('theaterID: ', theaterID);
-    }
-
-    function clickInfoHandler(e) {
-        click(e.target);
-
         fetch(`${BASE_URL}/${locationId}/${theaterID}`)
         .then(res => res.json())
         .then(json => {
@@ -49,21 +43,46 @@ const Theater = () => {
             setTheater(json);
         })
 
+        console.log('클릭 작동 elem: ',elem);
+        setTheaterID(elem.dataset.id);
+        // console.log('theaterID: ', theaterID);
+    }
+
+    function clickInfoHandler(e) {
+        click(e.target);
     }
 
     useEffect(() => {
-
-        console.log('지점 정보 불러옴!~');
+        // console.log('지점 정보 불러옴!~');
         // 지점 정보 불러오기
         fetch(`${BASE_URL}/${locationId}`)
         .then(res => res.json())
         .then(json => {
-            console.log('theater: ', json.theaters);
+            // console.log('theater: ', json.theaters);
             setItemList(json.theaters);
-            }
-        );
+            setTimeout(()=> {
+                console.log($ulRef.current.firstElementChild.firstElementChild);                
+                $ulRef.current.firstElementChild.firstElementChild.click();
+            }, 100);
+        });
+
     }, [locationId]);
 
+    // useEffect(() => {
+    //     // console.log('지점 정보 불러옴!~');
+    //     // 지점 정보 불러오기
+    //     fetch(`${BASE_URL}/${locationId}`)
+    //     .then(res => res.json())
+    //     .then(json => {
+    //         // console.log('theater: ', json.theaters);
+    //         setItemList(json.theaters);
+    //         setTimeout(()=> {
+    //             console.log($ulRef.current.firstElementChild.firstElementChild);                
+    //             $ulRef.current.firstElementChild.firstElementChild.click();
+    //         }, 100);
+    //     });
+
+    // }, [locationId]);
 
 
     return(
@@ -83,7 +102,7 @@ const Theater = () => {
                 
                 {/* Tab Content */}
                 <div id={locationId} className="tabContent">
-                    <ul>
+                    <ul id="location-ul" ref={$ulRef}>
                         {itemList.map(item => {
                                 return (
                                     <li key={item.theaterID} >

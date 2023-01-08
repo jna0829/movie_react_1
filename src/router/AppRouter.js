@@ -5,18 +5,18 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import App from "../App";
 import Theater from "../components/Theater";
+import Header from "../components/Header";
 
 
 const AppRouter = () => {
     return (
         <>
-            {/* <Header /> */}
+            <Header />
 
             <Routes>
                 {/* 뜻 : "/" 경로로 요청하면 App컴포넌트를 렌더링하세요 */}
                 <Route path="/" element={<App />} />
                 <Route path="/theaters/*" element={<Theater />} />
-                {/* <Route path="/theaters/:theaterID" element={<Theater />} /> */}
             </Routes>
         </>
     );
